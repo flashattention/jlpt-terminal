@@ -1,5 +1,7 @@
 # JLPT Word King -- Terminal
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 A terminal flashcard app for studying JLPT vocabulary (N5 through N1), no
 audio required. For each word you get the expression, its reading, part of
 speech, meaning, and an example sentence with its own reading and English
