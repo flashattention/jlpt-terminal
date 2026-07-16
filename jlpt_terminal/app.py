@@ -76,7 +76,8 @@ class LevelSelectScreen(Screen):
 
 class StudyScreen(Screen):
     BINDINGS = [
-        Binding("space,enter", "flip", "Flip card"),
+        Binding("enter", "flip", "Flip card"),
+        Binding("space", "flip_or_next", "Flip / Next"),
         Binding("right,n,l", "next_word", "Next"),
         Binding("left,p,h", "prev_word", "Previous"),
         Binding("s", "shuffle", "Shuffle"),
@@ -120,7 +121,7 @@ class StudyScreen(Screen):
             text = (
                 f"[b]{expression}[/b]\n\n"
                 f"[dim]{reading}[/dim]{pos}\n\n"
-                f"[dim italic](press space to reveal meaning)[/dim italic]"
+                f"[dim italic](press space to reveal meaning, space again for next)[/dim italic]"
             )
         else:
             lines = [
@@ -152,6 +153,12 @@ class StudyScreen(Screen):
     def action_flip(self) -> None:
         self._flipped = not self._flipped
         self._refresh_card()
+
+    def action_flip_or_next(self) -> None:
+        if self._flipped:
+            self.action_next_word()
+        else:
+            self.action_flip()
 
     def action_next_word(self) -> None:
         self._index = (self._index + 1) % len(self._words)
