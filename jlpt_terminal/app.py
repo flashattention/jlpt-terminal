@@ -89,10 +89,11 @@ class StudyScreen(Screen):
         super().__init__()
         self._original_order = list(words)
         self._words = list(words)
+        random.shuffle(self._words)
         self._index = 0
         self._flipped = False
         self._level_label = level_label
-        self._shuffled = False
+        self._shuffled = True
 
     def compose(self) -> ComposeResult:
         yield Header(show_clock=False)
@@ -119,8 +120,7 @@ class StudyScreen(Screen):
 
         if not self._flipped:
             text = (
-                f"[b]{expression}[/b]\n\n"
-                f"[dim]{reading}[/dim]{pos}\n\n"
+                f"[b]{expression}[/b]{pos}\n\n"
                 f"[dim italic](press space to reveal meaning, space again for next)[/dim italic]"
             )
         else:
