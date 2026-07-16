@@ -2,7 +2,7 @@ import asyncio
 
 from textual.widgets import Static
 
-from jlpt_terminal.app import JlptTerminalApp, LevelSelectScreen, StudyScreen
+from jlpt_terminal.app import JlptTerminalApp, LevelSelectScreen, StudyScreen, _sentence_credit
 
 
 def card_text(screen: StudyScreen) -> str:
@@ -33,6 +33,8 @@ async def run() -> None:
             assert sentence.japanese_text in back_text
             assert sentence.reading in back_text
             assert sentence.english_text in back_text
+            assert _sentence_credit(sentence) in back_text, "attribution credit missing"
+            assert "Tatoeba" in back_text
 
         await pilot.press("right")
         assert not screen._flipped, "flip state should reset on next"

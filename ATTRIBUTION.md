@@ -33,14 +33,30 @@ France); the remaining 3 didn't carry a license tag in the API response
 Tatoeba's site-wide default of CC BY 2.0 FR for text content.
 
 CC BY 2.0 FR requires citing each sentence's original author when reusing
-it. **Known gap:** neither this repo's `build_data.py` nor the upstream
-`jlpt_word_king` ETL pipeline it copies from currently retains Tatoeba's
-per-sentence author usernames or sentence IDs, so this app cannot yet
-produce that per-sentence credit. Anyone distributing this app beyond
-casual/personal use should re-fetch the Tatoeba data with the `username`
-and sentence `id` fields (both present in Tatoeba's API response) and
-publish an attribution list -- see Tatoeba's own guidance:
-https://en.wiki.tatoeba.org/articles/show/using-the-tatoeba-corpus
+it. `build_data.py` fulfils this: it matches every sentence's text against
+Tatoeba's own bulk export ("Detailed Sentences" at
+https://tatoeba.org/en/downloads, per-language TSV, updated weekly) and
+stores that sentence's Tatoeba id and contributing author's username in
+`sentences.tatoeba_id` / `sentences.author_username`
+(`tatoeba_attribution.py`). The app displays that credit
+("-- username, Tatoeba #id (license)") under every example sentence once
+the card is flipped -- see `_sentence_credit()` in `jlpt_terminal/app.py`.
+15,220 of 15,224 sentences (99.97%) matched; the rest, plus any sentence
+with no linked Tatoeba account, show as "an anonymous Tatoeba contributor,"
+matching how Tatoeba itself displays them.
+
+(Earlier iteration note: this was originally implemented by querying
+Tatoeba's live per-sentence API once per sentence, which turned out to hit
+an unpublished rate limit after a few hundred requests -- full backfill at
+a request rate that avoided errors projected to ~27 hours. The bulk export
+above has the same data already and took 12 seconds to match all 15,224
+sentences locally, so that's what `build_data.py` uses.)
+
+The export is cached at `.tatoeba_sentences_detailed.tsv.bz2` so re-running
+`build_data.py` doesn't redownload it every time; pass
+`--refresh-attribution-export` to force a fresh copy, or
+`--skip-attribution` to skip this step entirely (fast, but leaves every
+sentence's id/author NULL).
 
 ## Sentence readings (`sentences.reading` column)
 

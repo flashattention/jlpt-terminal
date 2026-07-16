@@ -18,6 +18,9 @@ class Sentence:
     japanese_text: str
     reading: str
     english_text: str
+    license: str = ""
+    tatoeba_id: int | None = None
+    author_username: str | None = None
 
 
 @dataclass
@@ -88,12 +91,20 @@ class StudyDatabase:
         by_id = {w.id: w for w in words}
         placeholders = ",".join("?" * len(words))
         rows = self._con.execute(
-            "SELECT ws.word_id, s.japanese_text, s.reading, s.english_text "
+            "SELECT ws.word_id, s.japanese_text, s.reading, s.english_text, "
+            "s.license, s.tatoeba_id, s.author_username "
             "FROM word_sentences ws JOIN sentences s ON s.id = ws.sentence_id "
             f"WHERE ws.word_id IN ({placeholders})",
             [w.id for w in words],
         ).fetchall()
-        for word_id, japanese_text, reading, english_text in rows:
+        for word_id, japanese_text, reading, english_text, license_, tatoeba_id, author_username in rows:
             by_id[word_id].sentences.append(
-                Sentence(japanese_text=japanese_text, reading=reading, english_text=english_text)
+                Sentence(
+                    japanese_text=japanese_text,
+                    reading=reading,
+                    english_text=english_text,
+                    license=license_,
+                    tatoeba_id=tatoeba_id,
+                    author_username=author_username,
+                )
             )

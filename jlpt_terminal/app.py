@@ -16,7 +16,7 @@ from textual.containers import Center, Middle, Vertical
 from textual.screen import Screen
 from textual.widgets import Footer, Header, ListItem, ListView, Static
 
-from .db import LEVELS, StudyDatabase, Word
+from .db import LEVELS, Sentence, StudyDatabase, Word
 
 LEVEL_LABELS = {
     "N5": "N5 -- Beginner",
@@ -25,6 +25,17 @@ LEVEL_LABELS = {
     "N2": "N2 -- Upper intermediate",
     "N1": "N1 -- Advanced",
 }
+
+
+def _sentence_credit(sentence: Sentence) -> str:
+    """Tatoeba's CC BY terms require crediting each sentence's author."""
+    who = sentence.author_username or "an anonymous Tatoeba contributor"
+    credit = f"-- {who}, Tatoeba"
+    if sentence.tatoeba_id:
+        credit += f" #{sentence.tatoeba_id}"
+    if sentence.license:
+        credit += f" ({sentence.license})"
+    return credit
 
 
 class LevelSelectScreen(Screen):
@@ -124,6 +135,7 @@ class StudyScreen(Screen):
                     f"[b]Example:[/b] {escape(sentence.japanese_text)}",
                     f"[dim]{escape(sentence.reading)}[/dim]",
                     f"[i]{escape(sentence.english_text)}[/i]",
+                    f"[dim italic]{escape(_sentence_credit(sentence))}[/dim italic]",
                 ]
             else:
                 lines += ["", "[dim](no example sentence available)[/dim]"]
