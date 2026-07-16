@@ -1,6 +1,7 @@
 # JLPT Word King -- Terminal
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Data: CC BY-SA 4.0 / CC BY 2.0 FR](https://img.shields.io/badge/Data-CC%20BY--SA%204.0%20%2F%20CC%20BY%202.0%20FR-lightgrey.svg)](LICENSE-DATA)
 
 A terminal flashcard app for studying JLPT vocabulary (N5 through N1), no
 audio required. For each word you get the expression, its reading, part of
@@ -16,8 +17,9 @@ source repo at runtime.
 
 The bundled word/sentence data is third-party content under its own
 licenses (JMdict, CC BY-SA 4.0; Tatoeba, CC BY 2.0 FR) -- see
-[ATTRIBUTION.md](ATTRIBUTION.md). This repo's MIT license (below) covers
-only the code in this repo, not that data.
+[LICENSE-DATA](LICENSE-DATA) for the license terms and
+[ATTRIBUTION.md](ATTRIBUTION.md) for how each was sourced. This repo's MIT
+license (below) covers only the code in this repo, not that data.
 
 ## Setup
 

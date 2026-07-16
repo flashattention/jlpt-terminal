@@ -1,6 +1,6 @@
 This license covers the source code in this repository only. The
 third-party study data bundled in `data/study.sqlite` is licensed
-separately -- see ATTRIBUTION.md.
+separately -- see LICENSE-DATA and ATTRIBUTION.md.
 
 MIT License
 

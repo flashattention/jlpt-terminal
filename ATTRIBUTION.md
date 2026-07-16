@@ -3,7 +3,9 @@
 This repo's own source code is MIT-licensed (see `LICENSE`). The study
 data bundled in `data/study.sqlite` comes from third-party sources under
 their own, different licenses -- the MIT license above covers the code,
-not that data.
+not that data. The actual license terms for the data are in
+[LICENSE-DATA](LICENSE-DATA); this document explains where each piece of
+data came from and how attribution is handled in practice.
 
 ## Vocabulary, readings, definitions, part of speech (`words` table)
 

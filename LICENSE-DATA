@@ -1,0 +1,51 @@
+This file covers only the study data bundled in `data/study.sqlite`.
+This repo's own source code is licensed separately -- see `LICENSE` (MIT).
+
+The data comes from two third-party sources under two different Creative
+Commons licenses. See ATTRIBUTION.md for how each was sourced and how
+per-sentence author credit is handled; this file states the license terms
+themselves.
+
+================================================================================
+`words` table (expression, reading, part of speech, definitions)
+================================================================================
+
+Derived from JMdict, published by the Electronic Dictionary Research and
+Development Group (EDRDG), Monash University.
+
+License: Creative Commons Attribution-ShareAlike 4.0 International
+(CC BY-SA 4.0)
+
+Full legal text: https://creativecommons.org/licenses/by-sa/4.0/legalcode
+Human-readable summary: https://creativecommons.org/licenses/by-sa/4.0/
+
+You are free to share and adapt this data for any purpose, including
+commercially, under the following terms:
+
+  - Attribution -- You must give appropriate credit to EDRDG/JMdict
+    (https://www.edrdg.org/jmdict/j_jmdict.html), provide a link to this
+    license, and indicate if changes were made.
+  - ShareAlike -- If you remix, transform, or build upon this data, you
+    must distribute your contributions under this same license.
+
+================================================================================
+`sentences` table (japanese_text, reading, english_text)
+================================================================================
+
+From Tatoeba (https://tatoeba.org), collectively authored by its
+contributors. Each sentence's specific author is recorded in
+`sentences.author_username` (see ATTRIBUTION.md); Tatoeba's terms require
+citing that individual author, not just Tatoeba generally, when reusing a
+given sentence.
+
+License: Creative Commons Attribution 2.0 France (CC BY 2.0 FR)
+
+Full legal text: https://creativecommons.org/licenses/by/2.0/fr/legalcode
+Human-readable summary: https://creativecommons.org/licenses/by/2.0/fr/
+
+You are free to share and adapt this data for any purpose, including
+commercially, as long as you give appropriate credit to the sentence's
+author (per `sentences.author_username`) and Tatoeba as the source, and
+indicate if changes were made (`sentences.reading` in this database is a
+computed hiragana transcription of the original sentence text, not part
+of the original Tatoeba data).
