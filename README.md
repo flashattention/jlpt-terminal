@@ -14,6 +14,11 @@ aren't in that source data, so `build_data.py` computes them locally with
 single `data/study.sqlite` this app ships with -- no dependency on the
 source repo at runtime.
 
+The bundled word/sentence data is third-party content under its own
+licenses (JMdict, CC BY-SA 4.0; Tatoeba, CC BY 2.0 FR) -- see
+[ATTRIBUTION.md](ATTRIBUTION.md). This repo's MIT license (below) covers
+only the code in this repo, not that data.
+
 ## Setup
 
 ```bash
